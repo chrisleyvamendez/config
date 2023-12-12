@@ -5,11 +5,12 @@
 --
 local keymap = vim.keymap
 local opts = {
-  noremap = true,
-  silent = true,
+	noremap = true,
+	silent = true,
 }
 
 --delete word backwards
+-- the 'n' means it is in normal mode, the middle arg is the new map, the last arg is the original
 keymap.set("n", "dw", 'vb"_d')
 
 -- Select all
@@ -26,7 +27,7 @@ keymap.set("n", "<Leader>O", "O<Esc>^Da", opts)
 keymap.set("n", "<C-m>", "<C-i>", opts)
 
 -- New tab
-keymap.set("n", "te", ":tabedit")
+keymap.set("n", "te", ":tabedit", opts)
 keymap.set("n", "<tab>", ":tabnext<Return>", opts)
 keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
 -- Split window
@@ -44,6 +45,8 @@ keymap.set("n", "<C-w><right>", "<C-w>>")
 keymap.set("n", "<C-w><up>", "<C-w>+")
 keymap.set("n", "<C-w><down>", "<C-w>-")
 
+vim.keymap.set("i", "jj", "<ESC>", opts)
+-- close window()
 keymap.set("n", "<C-j>", function()
-  vim.diagnostic.goto_next()
+	vim.diagnostic.goto_next()
 end, opts)
